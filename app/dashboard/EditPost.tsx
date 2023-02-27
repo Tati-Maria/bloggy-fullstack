@@ -22,7 +22,7 @@ interface EditPostProps {
 
 const EditPost = ({name, avatar, content, comments, id}: EditPostProps) => {
     const [isToggled, setIsToggled] = useState(false);
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [text, setText] = useState('');
     let deleteToastId: string;
     const queryClient = useQueryClient();
@@ -47,6 +47,30 @@ const EditPost = ({name, avatar, content, comments, id}: EditPostProps) => {
         deleteToastId = toast.loading("Deleting post...", {id: "deleteToastId"})
         mutate(id);
     }
+    //edit a post
+    // const {mutate: editPost} =  useMutation(
+    //     async (data: {id: string; text: string}) => await axios.put("/api/posts/editPost", data),
+    //     {
+    //         onError: (error) => {
+    //             if(error instanceof AxiosError) {
+    //                 toast.error(error.response?.data.message)
+    //             }
+    //         },
+    //         onSuccess: () => {
+    //             toast.success("Post edited successfully");
+    //             queryClient.invalidateQueries(["authPosts"]);
+    //         }
+    //     }
+    // );
+
+    // const edit = () => {
+    //     editPost({id, text})
+    // }
+
+    // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     edit();
+    // }
 
 
   return (

@@ -1,7 +1,5 @@
 'use client'
 
-import {useState} from 'react'
-
 type TextInputProps = {
     text: string;
     setText: (text: string) => void;
@@ -15,7 +13,7 @@ const TextInput = ({text, setText, setOpen}: TextInputProps) => {
     <div  className="fixed bg-black/50 w-full h-full z-20 left-0 top-0 ">
         <form className="absolute bg-white shadow-md shadow-slate-900/40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-12 rounded-lg">
             <button type='button' onClick={() => setOpen(false)} className='absolute top-0 right-4 text-4xl text-red-600'>&times;</button>
-            <legend className='text-center pb-4'>Edit Post</legend>
+            <legend className='text-center pb-4'>Edit Post()</legend>
             <fieldset className='flex flex-col'>
                 <textarea
                 value={text}

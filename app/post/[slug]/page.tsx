@@ -6,6 +6,7 @@ import {PostType} from "@/app/types/postType"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios";
 import Image from "next/image";
+import SyncLoader from "react-spinners/SyncLoader";
 
 type URL = {
     params: {
@@ -23,10 +24,12 @@ const Detail = (url: URL) => {
     const {data, isLoading, isError} = useQuery<PostType>(
         {queryKey: ['detail-post'], 
         queryFn: () => getPost(url.params.slug)}
-        )
+        );
 
-        if(isLoading) return <div>Loading...</div>
-        if(isError) return <div>Something went wrong</div>
+        if(isLoading) return <SyncLoader color="#fff" />;
+        if(isError) return <div>Something went wrong</div>;
+    
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
   return (
     <div>
@@ -51,7 +54,7 @@ const Detail = (url: URL) => {
                          />
                         <div>
                             <h3 className="text-base font-medium">{comment?.user?.name}</h3>
-                            <span className="text-sm text-gray-500">{comment.createdAt}</span>
+                            <span className="text-sm text-gray-500">{new Date(comment.createdAt).toLocaleDateString('pt-PT')}</span>
                         </div>
                     </div>
                     <div className="pt-4">

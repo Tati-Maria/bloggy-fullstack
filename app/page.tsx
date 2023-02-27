@@ -4,6 +4,8 @@ import { PostType } from "./types/Posts";
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query';
 import Post from "./components/Post";
+import SyncLoader from "react-spinners/SyncLoader";
+
 //useQuery is a hook that allows us to perform a query. it will track the state of a query and return the appropriate data.
 
 const getAllPosts = async () => {
@@ -15,7 +17,7 @@ export default function Home() {
   const { data, isLoading, error } = useQuery<PostType[]>({queryFn: getAllPosts, queryKey: ['posts']});
 
   if(error) return error;
-  if(isLoading) return 'Loading...'; 
+  if(isLoading) return <SyncLoader color="#fff" /> 
   
   return (
     <main>

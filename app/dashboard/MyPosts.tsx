@@ -1,6 +1,7 @@
 'use client'
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { SyncLoader } from "react-spinners";
 import { AuthPosts } from "../types/authPosts";
 import EditPost from "./EditPost";
 
@@ -12,8 +13,8 @@ const getAuthPosts = async () => {
 const MyPosts = () => {
     const { data, isLoading, isError } = useQuery<AuthPosts>({ queryFn: getAuthPosts, queryKey: ["authPosts"] });
 
-    if(isLoading) return <div>Loading...</div>
-    if(isError) return <div>Something went wrong</div>
+    if(isLoading) return <SyncLoader color="#36d7b7" />;
+    if(isError) return <div className="text-white">Something went wrong</div>
 
   return (
     <div>
